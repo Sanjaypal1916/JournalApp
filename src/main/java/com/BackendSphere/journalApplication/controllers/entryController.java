@@ -3,6 +3,7 @@ package com.BackendSphere.journalApplication.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,13 +24,13 @@ public class entryController {
 	private entryService service;
 	
 	@GetMapping()
-	public List<entries> getall(){
-		return service.getall();
+	public ResponseEntity<List<entries>>  getall(){
+		return ResponseEntity.ok(service.getall());
 	}
 	
 	@GetMapping("/{id}")
-	public entries getbyid(@PathVariable String id){
-		return service.getbyid(id);
+	public ResponseEntity<entries> getbyid(@PathVariable String id){
+		return ResponseEntity.ok(service.getbyid(id));
 	}
 	
 	@PostMapping()
