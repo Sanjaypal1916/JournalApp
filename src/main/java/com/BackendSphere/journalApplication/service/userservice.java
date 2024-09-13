@@ -57,6 +57,15 @@ public class userservice {
 			return false;
 		}
 	}
+
+	public user getuserbyusername(String username) {
+		user u = repo.findByUsername(username).orElse(null);
+		if(u==null) {
+			return null;
+		}else {
+			return u;
+		}
+	}
 	
 	
 

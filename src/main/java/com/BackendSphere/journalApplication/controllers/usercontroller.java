@@ -50,6 +50,15 @@ public class usercontroller {
 		return service.delete(id);
 	}
 	
+	@GetMapping("/{username}")
+	public user getuserbyname(@PathVariable String username) {
+		user u = service.getuserbyusername(username);
+		if(u==null) {
+			return null;
+		}else {
+			return u;
+		}
+	}
 	
 	
 	
