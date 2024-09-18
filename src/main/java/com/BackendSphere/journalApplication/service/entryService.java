@@ -47,7 +47,7 @@ public class entryService {
 	
 	
 //post done
-	@Transactional
+//	@Transactional
 	public entries create(entries entry,String user) {
 		user u1 = uservice.getuserbyusername(user);
 		entry.setDate(LocalDateTime.now());

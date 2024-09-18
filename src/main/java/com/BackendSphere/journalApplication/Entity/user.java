@@ -10,11 +10,16 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.mongodb.lang.NonNull;
 
+import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 
 @Data
 @Document(collection = "user")
 public class user {
+	
 	
 	@Id
 	private String id;
@@ -27,4 +32,9 @@ public class user {
 	
 	@DBRef
 	private List<entries> entries= new ArrayList<>();
+	private List<String> roles;
+	
+	
+	
+	
 }

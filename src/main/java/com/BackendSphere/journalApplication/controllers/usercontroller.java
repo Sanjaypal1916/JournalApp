@@ -3,6 +3,8 @@ package com.BackendSphere.journalApplication.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,19 +32,13 @@ public class usercontroller {
 		return service.getall();
 	}
 	
-	@GetMapping("/{id}")
-	public  user getbyid(@PathVariable String id){
-		return service.getbyid(id);
-	}
 	
-	@PostMapping()
-	public  user save(@RequestBody user user){
-		return service.create(user);
-	}
 	
-	@PutMapping("/{id}")
-	public  user updatebyid(@PathVariable String id ,@RequestBody user user){
-		return service.update(id, user);
+	@PutMapping
+	public  user updatebyid(@RequestBody user user){
+		Authentication auth =SecurityContextHolder.getContext().getAuthentication();
+		String userid = auth.getName();
+		return service.update(userid, user);
 	}
 	
 	@DeleteMapping("/{id}")
