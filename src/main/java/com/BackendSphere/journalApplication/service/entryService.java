@@ -3,6 +3,7 @@ package com.BackendSphere.journalApplication.service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,7 +40,15 @@ public class entryService {
 	public entries getbyid(String user,String id) {
 		
 		user u1 = uservice.getuserbyusername(user);
-		List<entries> li =u1.getEntries();
+		
+//		method 1
+		List<entries> li =u1.getEntries().stream().filter(x -> x.getId().equals(id)).collect(Collectors.toList());
+		
+		if(!li.isEmpty()) {
+			return repo.findById(id).orElse(null);
+		}
+		
+//		method 2
 		entries e =(entries) li.stream().map(x->x.getId()==id);
 //		entries entry = repo.findById(id).orElseThrow(()->new RuntimeException());
 		return e;
@@ -54,7 +63,7 @@ public class entryService {
 		if(u1!=null) {
 			entries e1 = repo.save(entry);
 			u1.getEntries().add(e1);
-			uservice.create(u1);
+			uservice.savingEntryInuser(u1);
 			return e1;			
 		}else {
 			return null;
@@ -85,7 +94,7 @@ public class entryService {
 		else {
 			u.getEntries().removeIf(x->x.getId().equals(id));
 //			repo.deleteById(null);
-			uservice.create(u);
+			uservice.savingEntryInuser(u);
 			return true;
 		}
 		}

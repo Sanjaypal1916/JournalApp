@@ -33,8 +33,11 @@ public class userservice {
 	public user create(user user) {
 		user.setPassword(passwordencoder.encode(user.getPassword()));
 		user.setRoles(List.of("USER"));
-		return repo.save(user);
-		
+		return repo.save(user);	
+	}
+	
+	public user savingEntryInuser(user user) {
+		return repo.save(user);	
 	}
 	
 	public user update(String id, user user) {
@@ -53,7 +56,7 @@ public class userservice {
 	}
 	
 	public boolean delete(String id) {
-		user u = repo.findById(id).orElse(null);
+		user u = repo.findByUsername(id).orElse(null);
 		
 		if(u!=null) {
 			repo.deleteById(id);
@@ -70,6 +73,12 @@ public class userservice {
 		}else {
 			return u;
 		}
+	}
+
+	public user createAdmin(user user) {
+			user.setPassword(passwordencoder.encode(user.getPassword()));
+			user.setRoles(List.of("USER","ADMIN"));
+			return repo.save(user);	
 	}
 	
 	
