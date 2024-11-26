@@ -24,6 +24,7 @@ public class entries {
 	private LocalDateTime date;
 	
 	
-	
+
+	private sentiments sentimentAnalysis;
 
 }

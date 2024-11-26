@@ -1,0 +1,61 @@
+spring:
+  application:
+    name: journalApplication
+  data:
+    mongodb:
+      port: 27017
+      database: journalEntries
+      auto-index-creation: true
+#mailsending 
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: sanjaypal606060@gmail.com
+    password: wfac ogzv unfd ogou
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  redis:
+    host: localhost
+    port: 6379
+   
+  kafka:
+    bootstrap-servers: aws.confluent.cloud:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      group-id: weekly-sentiment-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: com.BackendSphere.journalApplication.model
+    properties:
+      security:
+        protocol: SASL_SSL
+      sasl:
+        mechanism: PLAIN
+        jaas:
+          config: org.apache.kafka.common.security.plain.PlainLoginModule required username='xxxxx' password='xxxxxxxxxxxxxx';
+      session:
+        timeout:
+          ms: 45000
+     
+   
+   
+   
+server:
+  port: 8080
+    
+    
+weather_api_key: 7d54e4fd1a542644f66fe9789e32fb7e
+
+
+  
+    

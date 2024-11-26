@@ -10,14 +10,19 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.mongodb.lang.NonNull;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
 @Data
 @Document(collection = "user")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class user {
 	
 	
@@ -34,6 +39,8 @@ public class user {
 	private List<entries> entries= new ArrayList<>();
 	private List<String> roles;
 	
+	
+	private String email;
 	
 	
 	

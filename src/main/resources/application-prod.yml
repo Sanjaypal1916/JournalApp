@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: journalApplication
+  data:
+    mongodb:
+      port: 27017
+      database: journalEntries
+      auto-index-creation: true
+     
+      
+server:
+  port: 8081
+  
+  
+weather_api_key: 7d54e4fd1a542644f66fe9789e32fb7e
